@@ -1,3 +1,8 @@
+// import type { PluginListenerHandle } from '@capacitor/core';
+
 export interface DevOptionsCheckerPlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
+  /**
+   * Returns true if the developer mode is enabled on Android
+   */
+   checkDevOptions(): Promise<{ enabled: boolean }>;
 }

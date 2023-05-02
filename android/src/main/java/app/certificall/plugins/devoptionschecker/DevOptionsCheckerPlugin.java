@@ -1,4 +1,4 @@
-package app.certificall.plugins.devoptionschecker;
+package app.certificall.plugins.DevOptionsChecker;
 
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
@@ -9,14 +9,21 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 @CapacitorPlugin(name = "DevOptionsChecker")
 public class DevOptionsCheckerPlugin extends Plugin {
 
-    private DevOptionsChecker implementation = new DevOptionsChecker();
+  private DevOptionsChecker implementation;
 
-    @PluginMethod
-    public void echo(PluginCall call) {
-        String value = call.getString("value");
+  @Override
+  public void load() {
+    implementation = new DevOptionsChecker(getActivity());
+  }
 
-        JSObject ret = new JSObject();
-        ret.put("value", implementation.echo(value));
-        call.resolve(ret);
-    }
+  @PluginMethod()
+  public void checkDevOptions(PluginCall call) {
+    JSObject ret = new JSObject();
+    boolean enabled = implementation.getDevOptionsEnabled();
+
+
+    ret.put("enabled", enabled);
+    call.resolve(ret);
+  }
+
 }

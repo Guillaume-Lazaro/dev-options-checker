@@ -11,9 +11,25 @@ npx cap sync
 
 ## API
 
-<docgen-index></docgen-index>
+<docgen-index>
+
+* [`checkDevOptions()`](#checkdevoptions)
+
+</docgen-index>
 
 <docgen-api>
-<!-- run docgen to generate docs from the source -->
-<!-- More info: https://github.com/ionic-team/capacitor-docgen -->
+<!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
+
+### checkDevOptions()
+
+```typescript
+checkDevOptions() => Promise<{ enabled: boolean; }>
+```
+
+Returns true if the developer mode is enabled on Android
+
+**Returns:** <code>Promise&lt;{ enabled: boolean; }&gt;</code>
+
+--------------------
+
 </docgen-api>

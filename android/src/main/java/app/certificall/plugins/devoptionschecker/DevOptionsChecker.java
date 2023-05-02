@@ -1,11 +1,39 @@
-package app.certificall.plugins.devoptionschecker;
+package app.certificall.plugins.DevOptionsChecker;
 
-import android.util.Log;
+import androidx.appcompat.app.AppCompatActivity;
+import android.provider.Settings;
 
 public class DevOptionsChecker {
+  private AppCompatActivity activity;
 
-    public String echo(String value) {
-        Log.i("Echo", value);
-        return value;
+  public DevOptionsChecker(AppCompatActivity activity) {
+    this.activity = activity;
+  }
+
+  public boolean getDevOptionsEnabled() {
+
+    int androidSdkVersion = android.os.Build.VERSION.SDK_INT;
+    String settings = "";
+
+    try {
+      if(androidSdkVersion < 16) {
+        settings = Settings.Secure.ADB_ENABLED;
+      } else {
+        if(androidSdkVersion == 16) {
+          settings = Settings.Secure.DEVELOPMENT_SETTINGS_ENABLED;
+        } else {
+          settings = Settings.Global.DEVELOPMENT_SETTINGS_ENABLED;
+        }
+      }
+
+      if(settings == "development_settings_enabled") {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (Exception e) {
+      return false;
     }
+  }
+
 }
