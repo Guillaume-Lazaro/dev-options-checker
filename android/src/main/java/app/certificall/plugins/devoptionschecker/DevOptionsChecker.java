@@ -2,6 +2,7 @@ package app.certificall.plugins.DevOptionsChecker;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.provider.Settings;
+import android.util.Log;
 
 public class DevOptionsChecker {
   private AppCompatActivity activity;
@@ -25,6 +26,8 @@ public class DevOptionsChecker {
           settings = Settings.Global.DEVELOPMENT_SETTINGS_ENABLED;
         }
       }
+
+      Log.i("DevOptionsCheck", settings);
 
       if(settings == "development_settings_enabled") {
         return true;
